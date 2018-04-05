@@ -14,7 +14,8 @@ var a = process.argv;
 function myTweets(){
     twitter.get('statuses/user_timeline', { screen_name: 'bossbob401', count: 20}).then(function(tweets){
         tweets.forEach(function(tweet){
-            console.log(tweet.created_at, tweet.text);
+            console.log("Time of Tweet: " + tweet.created_at);
+            console.log("Message: " + tweet.text + "\n");
         })
     })
 }
@@ -26,11 +27,11 @@ function spotifyInfo(songName){
         }
         var song = data.tracks.items[0];
         song.artists.forEach(function(artist){
-            console.log(artist.name);
+            console.log("Artist: " + artist.name);
         })
-        console.log(song.name);
-        console.log(song.preview_url);
-        console.log(song.album.name);
+        console.log("Song: " + song.name);
+        console.log("Song preview link: " + song.preview_url);
+        console.log("Album: " + song.album.name);
     });
 }
 
@@ -42,18 +43,18 @@ function movieInfo(movieName){
             return console.log(error);
         }
         var data = JSON.parse(body);
-        console.log(data.Title);
-        console.log(data.Year);
-        console.log(data.imdbRating);
+        console.log("Title: " + data.Title);
+        console.log("Year: " + data.Year);
+        console.log("OMDB Rating: " + data.imdbRating);
         data.Ratings.forEach(function(rating){
             if(rating.Source === 'Rotten Tomatoes'){
-                console.log(rating.Value);
+                console.log("Rotten Tomatoes rating: " + rating.Value);
             }
         })
-        console.log(data.Country);
-        console.log(data.Language);
-        console.log(data.Actors);
-        console.log(data.Plot);
+        console.log("Country: " + data.Country);
+        console.log("Language: " + data.Language);
+        console.log("Actors: " + data.Actors);
+        console.log("Movie plot: " + data.Plot);
     })
 }
 
